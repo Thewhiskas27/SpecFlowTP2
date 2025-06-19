@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowTP2", "SpecFlowTP2\SpecFlowTP2.csproj", "{B83F2B51-E27A-4130-9629-8D5B643887FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowTP2API", "SpecFlowTP2API\SpecFlowTP2API.csproj", "{202D6A39-D597-47BE-8829-624FCABCB504}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B83F2B51-E27A-4130-9629-8D5B643887FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83F2B51-E27A-4130-9629-8D5B643887FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83F2B51-E27A-4130-9629-8D5B643887FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83F2B51-E27A-4130-9629-8D5B643887FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202D6A39-D597-47BE-8829-624FCABCB504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202D6A39-D597-47BE-8829-624FCABCB504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202D6A39-D597-47BE-8829-624FCABCB504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202D6A39-D597-47BE-8829-624FCABCB504}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9088C4A3-8BCA-436D-889C-0F2905D3F97D}
+	EndGlobalSection
+EndGlobal
