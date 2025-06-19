@@ -1,4 +1,6 @@
-﻿namespace SpecFlowTP2API;
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace SpecFlowTP2API;
 
 public class Scrutin
 {
@@ -14,6 +16,13 @@ public class Scrutin
         return votes;
     }
     public int getVotes (Candidat c) { return c.votes; }
+    public string getPercs(List<Candidat> cs)
+    {
+        List<string> ps = new();
+        int votes = getAllVotes(cs);
+        foreach (var c in cs) { ps.Add($"Le candidat {c.name} a {c.votes * 100 / votes}% des votes ({c.votes})"); }
+        return string.Join(Environment.NewLine, ps);
+    }
     public List<Candidat> getWinners(List<Candidat> cs)
     {
         switch (cs.Count)
@@ -28,7 +37,7 @@ public class Scrutin
             default:
                 Candidat first = null;
                 Candidat sec = null;
-                List<Candidat> winners = new List<Candidat> { first, sec };
+                List<Candidat> winners = new() { first, sec };
                 int votes = getAllVotes(cs);
                 var vcand = 0;
                 foreach (var c in cs)
