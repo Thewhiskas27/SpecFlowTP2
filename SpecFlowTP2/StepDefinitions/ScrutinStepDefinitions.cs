@@ -37,6 +37,7 @@ namespace SpecFlowTP2.StepDefinitions
                 }
             }
         }
+
         #endregion
         #region Then
         [Then(@"we have a winner")]
@@ -59,6 +60,23 @@ namespace SpecFlowTP2.StepDefinitions
                 }
             }
             _result = $"{w} with {e}% of the votes";
+        }
+        [Then(@"the following candidates won")]
+        public void ThenTheFollowingCandidatesWon(Table table)
+        {
+            _cand = new();
+            foreach (var row in table.Rows) _cand.Add(new Candidat(row[0]));
+        }
+        [Then(@"we do another poll")]
+        public void ThenWeDoAnotherPoll()
+        {
+            scrutin = new("Deuxième tour", _cand, true);
+        }
+
+        [Then(@"noone won")]
+        public void ThenNooneWon()
+        {
+            scrutin.winner = null;
         }
         #endregion
     }

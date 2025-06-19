@@ -3,7 +3,7 @@
 public class Poll
 {
     public string label { get; set; }
-    public List<> candidats { get; set; }
+    public List<Candidat> candidats { get; set; }
     public bool IsOpen { get; set; }
     public string winner { get; set; }
     public Poll(string label, List<Candidat> candidats, bool isOpen)
