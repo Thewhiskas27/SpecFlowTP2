@@ -1,26 +1,26 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using SpecFlowTP2API.Classes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SpecFlowTP2API;
 
 public class Scrutin
 {
-    public void addCandidat(List<Candidat> cs, string name)
+    public void addCandidat(Poll p, string name)
     {
         var c = new Candidat(name);
-        cs.Add(c);
+        p.candidats.Add(c);
     }
-    public int getAllVotes(List<Candidat> cs)
+    public int getAllVotes(Poll p)
     {
         int votes = 0;
-        foreach (var c in cs) { votes += c.votes;}
+        foreach (var c in p.candidats) { votes += c.votes;}
         return votes;
     }
-    public int getVotes (Candidat c) { return c.votes; }
-    public List<PourcentVotes> getPercs(List<Candidat> cs)
+    public List<PourcentVotes> getPercs(Poll p)
     {
-        int votes = getAllVotes(cs);
+        int votes = getAllVotes(p);
         List<PourcentVotes> pv = new();
-        foreach (var c in cs) 
+        foreach (var c in p.candidats) 
         { pv.Add(new PourcentVotes(c, c.votes * 100 / votes)); }
         return pv;
     }
@@ -36,17 +36,15 @@ public class Scrutin
             case 2:
                 if (pv[0].percent > pv[1].percent)
                 {
-                    first = pv[0];
-                    cs.Remove(second);
+                    List<Candidat> candidat = new() { cs[0].c };
+                    return candidat;
                 }
                 else if (pv[0].percent < pv[1].percent)
                 {
-                    first = pv[1];
-                    cs.Remove(second);
+                    List<Candidat> candidat = new() { cs[1].c };
+                    return candidat;
                 }
                 else return new();
-                List<Candidat> candidat = new() { cs[0].c };
-                return candidat;
             default:
                 foreach (var p in pv)
                 {
@@ -66,42 +64,5 @@ public class Scrutin
                 List<Candidat> candidats = new() { first.c, second.c };
                 return candidats;
         }
-        /*switch (cs.Count)
-        {
-            case < 2:
-                return cs;
-            case 2:
-                if (cs[0].votes > cs[1].votes) cs.Remove(cs[1]);
-                else if (cs[0].votes < cs[1].votes) cs.Remove(cs[0]);
-                else cs.Clear();
-                return cs;
-            default:
-                Candidat first = null;
-                Candidat sec = null;
-                List<Candidat> winners = new() { first, sec };
-                int votes = getAllVotes(cs);
-                var vcand = 0;
-                foreach (var c in cs)
-                {
-                    if (sec.votes >= c.votes) continue;
-                    vcand += c.votes * 100 / votes;
-                    if (vcand > 50)
-                    {
-                        winners.Remove(sec);
-                        first = c;
-                        return winners;
-                    }
-                    else
-                    {
-                        if (c.votes > first.votes)
-                        {
-                            sec = first;
-                            first = c;
-                        }
-                        else sec = c;
-                    }
-                }
-                return winners;
-        }*/
     }
 }

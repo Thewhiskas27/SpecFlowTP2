@@ -1,6 +1,5 @@
 ﻿Feature: Scrutin
 
-@mytag
 Scenario: Absolute Majority
 	Given the poll is closed
 	And the votes are shown

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpecFlowTP2API
+namespace SpecFlowTP2API.Classes
 {
     public class PourcentVotes
     {
@@ -13,7 +13,7 @@ namespace SpecFlowTP2API
         public PourcentVotes(Candidat c, int p)
         {
             this.c = c;
-            this.percent = p;
+            percent = p;
         }
     }
 }

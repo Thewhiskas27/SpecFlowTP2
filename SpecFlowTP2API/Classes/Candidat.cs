@@ -1,5 +1,4 @@
-﻿
-namespace SpecFlowTP2API;
+﻿namespace SpecFlowTP2API.Classes;
 
 public class Candidat
 {
@@ -10,7 +9,7 @@ public class Candidat
     public int votes { get; set; }
     public Candidat(string name)
     {
-        this.id = generateId();
+        id = generateId();
         this.name = name;
     }
 }

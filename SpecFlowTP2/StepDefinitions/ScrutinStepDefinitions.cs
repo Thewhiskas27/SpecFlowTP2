@@ -1,4 +1,5 @@
 using SpecFlowTP2API;
+using SpecFlowTP2API.Classes;
 
 namespace SpecFlowTP2.StepDefinitions
 {
@@ -6,18 +7,19 @@ namespace SpecFlowTP2.StepDefinitions
     public sealed class ScrutinStepDefinitions
     {
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-        private List<Candidat> _candidats;
+        private Poll scrutin;
+        private List<PourcentVotes> _candidats;
         private string _result;
         #region Given
         [Given(@"the poll is closed")]
-        public void GivenThePollIsClosed()
+        public void GivenThePollIsClosed(Poll s)
         {
-            throw new PendingStepException();
+
         }
         [Given(@"the votes are shown")]
         public void GivenTheVotesAreShown()
         {
-            throw new PendingStepException();
+
         }
         #endregion
         #region When
@@ -29,9 +31,9 @@ namespace SpecFlowTP2.StepDefinitions
         #endregion
         #region Then
         [Then(@"the candidate won")]
-        public void ThenTheCandidateWon()
+        public void ThenTheCandidateWon(Candidat c)
         {
-            throw new PendingStepException();
+            this._result.Should().Be(c.name);
         }
         #endregion
     }
