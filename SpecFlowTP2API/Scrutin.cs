@@ -16,16 +16,57 @@ public class Scrutin
         return votes;
     }
     public int getVotes (Candidat c) { return c.votes; }
-    public string getPercs(List<Candidat> cs)
+    public List<PourcentVotes> getPercs(List<Candidat> cs)
     {
-        List<string> ps = new();
         int votes = getAllVotes(cs);
-        foreach (var c in cs) { ps.Add($"Le candidat {c.name} a {c.votes * 100 / votes}% des votes ({c.votes})"); }
-        return string.Join(Environment.NewLine, ps);
+        List<PourcentVotes> pv = new();
+        foreach (var c in cs) 
+        { pv.Add(new PourcentVotes(c, c.votes * 100 / votes)); }
+        return pv;
     }
-    public List<Candidat> getWinners(List<Candidat> cs)
+    public List<Candidat> getWinners(List<PourcentVotes> pv)
     {
-        switch (cs.Count)
+        PourcentVotes first = null;
+        PourcentVotes second = null;
+        List<PourcentVotes> cs = new() { first, second };
+        switch (pv.Count)
+        {
+            case < 2:
+                return new();
+            case 2:
+                if (pv[0].percent > pv[1].percent)
+                {
+                    first = pv[0];
+                    cs.Remove(second);
+                }
+                else if (pv[0].percent < pv[1].percent)
+                {
+                    first = pv[1];
+                    cs.Remove(second);
+                }
+                else return new();
+                List<Candidat> candidat = new() { cs[0].c };
+                return candidat;
+            default:
+                foreach (var p in pv)
+                {
+                    if (p.percent > 50)
+                    {
+                        first = p;
+                        cs.Remove(second);
+                        break;
+                    }
+                    if (p.percent > first.percent)
+                    {
+                        second = first;
+                        first = p;
+                    }
+                    if (p.percent > second.percent) second = p;
+                }
+                List<Candidat> candidats = new() { first.c, second.c };
+                return candidats;
+        }
+        /*switch (cs.Count)
         {
             case < 2:
                 return cs;
@@ -61,6 +102,6 @@ public class Scrutin
                     }
                 }
                 return winners;
-        }
+        }*/
     }
 }
